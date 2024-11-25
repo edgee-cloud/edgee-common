@@ -2,6 +2,11 @@
 name = "edgee-path"
 version = "0.1.0"
 edition = "2021"
+authors = ["Edgee <opensource@edgee.cloud>"]
+description = "The full-stack edge platform for your edge oriented applications"
+keywords = ["Edgee"]
+license = "Apache-2.0"
+repository = "https://github.com/edgee-cloud/edgee-common"
 
 [dependencies]
 rand = "0.8.5"
