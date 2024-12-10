@@ -192,7 +192,6 @@ fn encrypt_string(input: &str) -> String {
 /// The specific array used for replacement is determined by the correspondence index.
 ///
 /// If a character in the input string does not exist in the correspondence array (CORRESPONDENCE), it remains unchanged in the decrypted string.
-#[allow(dead_code)]
 fn decrypt_string(input: &str, correspondence_index: usize) -> String {
     // Create a mutable copy of the input string
     let mut result = input.to_string();
@@ -231,7 +230,6 @@ fn decrypt_string(input: &str, correspondence_index: usize) -> String {
 /// The function first retrieves the sizes from the SIZES constant and the length of the hostname.
 /// It then calculates the possible sizes of the path by adding the length of the hostname and the length of the first slash to each size in the SIZES constant.
 /// The calculated sizes are stored in a new vector.
-#[allow(dead_code)]
 fn guess_path_sizes(hostname: &str) -> Vec<i32> {
     let sizes = SIZES;
     let hostname_len = hostname.len() as i32;
@@ -363,7 +361,6 @@ pub fn generate(hostname: &str) -> String {
 /// The function then decrypts the encrypted hostname using each correspondence array in turn.
 /// If the decrypted hostname matches the given hostname, the function returns true.
 /// If none of the decrypted hostnames match the given hostname, the function returns false.
-#[allow(dead_code)]
 pub fn validate(hostname: &str, path: &str) -> bool {
     // check if the path length corresponds to a generated path
     if !guess_path_sizes(hostname).contains(&(path.len() as i32)) {
@@ -372,6 +369,12 @@ pub fn validate(hostname: &str, path: &str) -> bool {
 
     // remove the first slash of the path
     let new_path = &path[1..];
+
+    // check if a slash is present in the new_path
+    if new_path.contains('/') {
+        return false;
+    }
+
     let hostname_len = hostname.len();
     let new_path_len = new_path.len();
 
